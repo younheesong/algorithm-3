@@ -42,7 +42,15 @@
       function solution(n, arr2) {
         let answer,
           max = Number.MIN_SAFE_INTEGER;
-
+        for (let item of arr2) {
+          let sum = item.toString.split("").reduce((a, b) => a + Number(b), 0);
+          if (sum > max) {
+            max = sum;
+            answer = item;
+          } else if (sum === max) {
+            if (answer < item) answer = item;
+          }
+        }
         return answer;
       }
 
