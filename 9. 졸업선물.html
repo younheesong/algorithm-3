@@ -1,0 +1,50 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(m, product) {
+        let answer = 0;
+        const studentsLength = product.length;
+        const studentProductsByAsc = product.sort(function compare(a, b) {
+          return a[0] + a[1] - (b[0] + b[1]);
+        });
+
+        for (let i = 0; i < studentsLength; i++) {
+          let x = 0;
+          let sum = 0;
+          x++;
+          sum += studentProductsByAsc[i][0] / 2 + studentProductsByAsc[i][1];
+          for (let j = 0; j < studentsLength; j++) {
+            if (i == j) {
+              continue;
+            }
+            if (
+              m <
+              sum + studentProductsByAsc[j][0] + studentProductsByAsc[j][1]
+            ) {
+              break;
+            }
+
+            sum += studentProductsByAsc[j][0] + studentProductsByAsc[j][1];
+            x++;
+          }
+          answer = Math.max(x, answer);
+        }
+
+        return answer;
+      }
+
+      let arr = [
+        [6, 6],
+        [2, 2],
+        [4, 3],
+        [4, 5],
+        [10, 3],
+      ];
+      console.log(solution(28, arr));
+    </script>
+  </body>
+</html>
