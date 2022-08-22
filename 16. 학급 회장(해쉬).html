@@ -1,0 +1,32 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(s) {
+        let answer;
+        const obj = {};
+        for (const item of s) {
+          if (typeof obj[item] === "undefined") {
+            obj[item] = 1;
+          } else {
+            obj[item] += 1;
+          }
+        }
+        let maxValue = 0;
+        for (const key in obj) {
+          maxValue = Math.max(obj[key], maxValue);
+          if (maxValue === obj[key]) {
+            answer = key;
+          }
+        }
+        return answer;
+      }
+
+      let str = "BACBACCACCBDEDE";
+      console.log(solution(str));
+    </script>
+  </body>
+</html>
