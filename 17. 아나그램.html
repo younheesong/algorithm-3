@@ -1,0 +1,35 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(str1, str2) {
+        let answer = "YES";
+        const map1 = new Map();
+        const map2 = new Map();
+
+        for (const item of str1) {
+          if (map1.has(item)) map1.set(item, map1.get(item) + 1);
+          map1.set(item, 1);
+        }
+        for (const item of str2) {
+          if (map2.has(item)) map2.set(item, map2.get(item) + 1);
+          map2.set(item, 1);
+        }
+        for (const [key, value] in map1) {
+          if (value !== map2[key]) {
+            answer = "NO";
+            break;
+          }
+        }
+        return answer;
+      }
+
+      let a = "AbaAeCe";
+      let b = "baeeACA";
+      console.log(solution(a, b));
+    </script>
+  </body>
+</html>
