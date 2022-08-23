@@ -1,0 +1,44 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function compareMaps(map1, map2) {}
+      function solution(s, t) {
+        let answer = 0;
+
+        const map1 = new Map();
+        for (let item of t) {
+          if (!map1.has(item)) map1.set(item, 1);
+          else map1.set(item, map1.get(item) + 1);
+        }
+        let tempMap = new Map();
+
+        for (let i = 0; i < s.length - t.length + 1; i++) {
+          let count = 0;
+          for (var [key, value] of map1) tempMap.set(key, value);
+
+          for (let k = i; k < i + t.length; k++) {
+            if (tempMap.has(s[k]) && tempMap.get(s[k]) > 0) {
+              count++;
+              tempMap.set(s[k], tempMap.get(s[k]) - 1);
+              if (count == t.length) {
+                answer++;
+              }
+            } else {
+              break;
+            }
+          }
+        }
+
+        return answer;
+      }
+
+      let a = "bacaAacba";
+      let b = "abc";
+      console.log(solution(a, b));
+    </script>
+  </body>
+</html>
