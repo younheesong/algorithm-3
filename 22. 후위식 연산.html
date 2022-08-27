@@ -1,0 +1,38 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(s) {
+        let answer;
+
+        let stack = [];
+        const operators = ["+", "-", "/", "*"];
+        for (const item of s) {
+          if (operators.indexOf(item) == -1) {
+            stack.push(Number(item));
+          } else {
+            const y = stack.pop();
+            const x = stack.pop();
+            if (item === "+") {
+              stack.push(x + y);
+            } else if (item === "-") {
+              stack.push(x - y);
+            } else if (item === "*") {
+              stack.push(x * y);
+            } else {
+              stack.push(x / y);
+            }
+          }
+        }
+        answer = stack[0];
+        return answer;
+      }
+
+      let str = "352+*9-";
+      console.log(solution(str));
+    </script>
+  </body>
+</html>
