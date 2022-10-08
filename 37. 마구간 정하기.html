@@ -1,0 +1,43 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function count(stable, dist) {
+        let set = new Set([]);
+        stable.forEach((elem, i) => {
+          let minDistanceSum = elem + dist;
+          for (let j = i; j < stable.length; j++) {
+            if (minDistanceSum <= stable[j]) {
+              set.add(stable[j]);
+            }
+          }
+        });
+        return set.size;
+      }
+      function solution(c, stable) {
+        let answer;
+        const sortedStable = stable.sort((a, b) => a - b);
+        let rt = sortedStable[sortedStable.length - 1] - sortedStable[0];
+        let lt = sortedStable[1] - sortedStable[0];
+
+        while (lt <= rt) {
+          let mid = parseInt((rt + lt) / 2);
+          if (count(sortedStable, mid) >= c) {
+            answer = mid;
+            lt = mid + 1;
+          } else {
+            rt = mid - 1;
+          }
+        }
+
+        return answer;
+      }
+
+      let arr = [1, 2, 8, 4, 9];
+      console.log(solution(3, arr));
+    </script>
+  </body>
+</html>
