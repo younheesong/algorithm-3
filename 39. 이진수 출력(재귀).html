@@ -1,0 +1,26 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(n) {
+        let answer = "";
+        function DFS(L) {
+          if (L == 1 || L == 0) {
+            answer += L;
+            return;
+          } else {
+            DFS(parseInt(L / 2));
+            answer += parseInt(L % 2);
+          }
+        }
+        DFS(n);
+        return answer;
+      }
+
+      console.log(solution(16));
+    </script>
+  </body>
+</html>
