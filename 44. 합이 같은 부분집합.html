@@ -1,0 +1,41 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(arr) {
+        let answer = "NO";
+        let ch = Array.from({ length: arr.length }, () => 0);
+
+        function DFS(idx) {
+          if (idx === arr.length - 1) {
+            let includeArr = [];
+            let decludeArr = [];
+            for (let i = 0; i < ch.length; i++) {
+              if (ch[i] === 1) includeArr.push(arr[i]);
+              else decludeArr.push(arr[i]);
+            }
+
+            const includeArrSum = includeArr.reduce((a, b) => a + b, 0);
+            const decludeArrSum = decludeArr.reduce((a, b) => a + b, 0);
+            if (includeArrSum == decludeArrSum) {
+              answer = "YES";
+            }
+          } else {
+            ch[idx] = 1;
+            DFS(idx + 1);
+            ch[idx] = 0;
+            DFS(idx + 1);
+          }
+        }
+        DFS(0);
+        return answer;
+      }
+
+      let arr = [1, 3, 5, 6, 7, 10];
+      console.log(solution(arr));
+    </script>
+  </body>
+</html>
